@@ -8,11 +8,11 @@ function createClient({ headers }) {
     request: operation => {
       operation.setContext({
         fetchOptions: {
-          credentials: 'include',
+          credentials: 'include'
         },
-        headers,
+        headers
       });
-    },
+    }
   });
 }
 

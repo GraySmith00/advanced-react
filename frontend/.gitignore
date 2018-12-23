@@ -2,3 +2,4 @@
 .env
 variables.env.sample
 variables.env
+/.next
