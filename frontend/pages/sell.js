@@ -1,5 +1,11 @@
+import CreateItem from '../components/CreateItem';
+
 const Sell = () => {
-  return <p>Sell!</p>;
+  return (
+    <div>
+      <CreateItem />
+    </div>
+  );
 };
 
 export default Sell;
