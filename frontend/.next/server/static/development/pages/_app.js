@@ -321,7 +321,7 @@ var Nav = function Nav() {
       lineNumber: 8
     },
     __self: this
-  }, "Items")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "Shop")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/sell",
     __source: {
       fileName: _jsxFileName,
