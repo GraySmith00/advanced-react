@@ -1,6 +1,6 @@
 #endpoint: ${env:PRISMA_ENPOINT}
 endpoint: https://us1.prisma.sh/gray-smith-b62a04/gs-sick-fits/dev
-datamodel: datamodel.prisma
+datamodel: datamodel.graphql
 # secret: ${env:PRISMA_SECRET}
 hooks:
   post-deploy:
