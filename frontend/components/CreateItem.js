@@ -82,8 +82,8 @@ class CreateItem extends Component {
           >
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
-              <label htmlFor="title">
-                Title
+              <label htmlFor="file">
+                Image
                 <input
                   onChange={this.uploadFile}
                   type="file"
