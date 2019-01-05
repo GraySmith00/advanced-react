@@ -7,7 +7,6 @@ const Nav = () => {
     <NavStyles>
       <User>
         {({ data: { me } }) => {
-          console.log(me);
           if (me) return <p>{me.name}</p>;
           return null;
         }}
