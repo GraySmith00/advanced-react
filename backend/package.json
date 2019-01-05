@@ -28,6 +28,9 @@
   "repository": {
     "url": "wesbos.com"
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "babel": {
     "presets": [
       "env"

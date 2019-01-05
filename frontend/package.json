@@ -59,6 +59,9 @@
       "^.+\\.js?$": "babel-jest"
     }
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "//": "This is our babel config, I prefer this over a .babelrc file",
   "babel": {
     "env": {
