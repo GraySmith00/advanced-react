@@ -4,16 +4,14 @@ const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 
 const Mutations = {
-  async createItem(parent, args, ctx, info) {
+  createItem: async function(parent, args, ctx, info) {
     // TODO check if they are logged in
-    const item = await ctx.db.mutation.createItem(
+    return await ctx.db.mutation.createItem(
       {
         data: { ...args }
       },
       info
     );
-
-    return item;
   },
   updateItem(parent, args, ctx, info) {
     // take a copy of the updates
@@ -110,7 +108,6 @@ const Mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    console.log(res);
     return { message: 'thanks!' };
     // 3. email reset token
   },
