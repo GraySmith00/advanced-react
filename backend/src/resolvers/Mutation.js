@@ -5,11 +5,25 @@ const { promisify } = require('util');
 const { transport, makeANiceEmail } = require('../mail');
 
 const Mutations = {
-  createItem: async function(parent, args, ctx, info) {
-    // TODO check if they are logged in
+  async createItem(parent, args, ctx, info) {
+    console.log(ctx);
+
+    if (!ctx.request.userId) {
+      console.log('hiii');
+      throw new Error('You must be logged in to create an item!');
+    }
+
     return await ctx.db.mutation.createItem(
       {
-        data: { ...args }
+        data: {
+          // this is how you create a relationship between the item and the user
+          user: {
+            connect: {
+              id: ctx.request.userId
+            }
+          },
+          ...args
+        }
       },
       info
     );
