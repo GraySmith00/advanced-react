@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+import { shape, string, array } from 'prop-types';
 import { Query } from 'react-apollo';
 import Error from './ErrorMessage';
 import gql from 'graphql-tag';
@@ -44,7 +46,7 @@ const Permissions = props => (
             </thead>
             <tbody>
               {data.users.map(user => (
-                <User key={user.id} {...user} />
+                <UserPermissions key={user.id} user={user} />
               ))}
             </tbody>
           </Table>
@@ -54,23 +56,61 @@ const Permissions = props => (
   </Query>
 );
 
-const User = ({ name, email, id }) => {
-  return (
-    <tr>
-      <td>{name}</td>
-      <td>{email}</td>
-      {possiblePermissions.map(permission => (
-        <td key={permission}>
-          <label htmlFor={`${id}-permission-${permission}`}>
-            <input type="checkbox" />
-          </label>
+class UserPermissions extends Component {
+  state = {
+    // props used as seeding of initial state
+    permissions: this.props.user.permissions
+  };
+
+  static propTypes = {
+    user: shape({
+      name: string,
+      email: string,
+      id: string,
+      permissions: array
+    }).isRequired
+  };
+
+  handlePermissionChange = e => {
+    const checkbox = e.target;
+    let updatedPermissions = [...this.state.permissions];
+    if (checkbox.checked) {
+      updatedPermissions.push(checkbox.value);
+    } else {
+      updatedPermissions = updatedPermissions.filter(
+        perm => perm !== checkbox.value
+      );
+    }
+
+    this.setState({ permissions: updatedPermissions });
+  };
+
+  render() {
+    const {
+      user: { name, email, id }
+    } = this.props;
+    return (
+      <tr>
+        <td>{name}</td>
+        <td>{email}</td>
+        {possiblePermissions.map(permission => (
+          <td key={permission}>
+            <label htmlFor={`${id}-permission-${permission}`}>
+              <input
+                type="checkbox"
+                checked={this.state.permissions.includes(permission)}
+                value={permission}
+                onChange={this.handlePermissionChange}
+              />
+            </label>
+          </td>
+        ))}
+        <td>
+          <SickButton>Update</SickButton>
         </td>
-      ))}
-      <td>
-        <SickButton>Update</SickButton>
-      </td>
-    </tr>
-  );
-};
+      </tr>
+    );
+  }
+}
 
 export default Permissions;
